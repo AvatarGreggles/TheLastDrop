@@ -2486,6 +2486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   punchPrefab: {fileID: 4257438544490746499, guid: eeb32fd80db434c8faca15f83b93e3d6, type: 3}
   punchSpawn: {fileID: 1036570757}
+  attackTime: 0.5
   isPunching: 0
 --- !u!4 &1272365287
 Transform:
@@ -2762,24 +2763,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2000209577}
   m_CullTransparentMesh: 1
---- !u!1 &2105364813 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 703329033889532881, guid: b42711814aceb423f9acec31498fa328, type: 3}
-  m_PrefabInstance: {fileID: 703329033925572391}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2105364814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2105364813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f70afe45a777445ab6e85325f5cfcad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waterProvided: 0.25
 --- !u!1001 &703329033925572391
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2787,13 +2770,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2105364814, guid: b42711814aceb423f9acec31498fa328, type: 3}
+      propertyPath: waterProvided
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 703329033889532881, guid: b42711814aceb423f9acec31498fa328, type: 3}
       propertyPath: m_Name
       value: BubbleGhost
-      objectReference: {fileID: 0}
-    - target: {fileID: 703329033889532881, guid: b42711814aceb423f9acec31498fa328, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 703329033889532894, guid: b42711814aceb423f9acec31498fa328, type: 3}
       propertyPath: m_RootOrder

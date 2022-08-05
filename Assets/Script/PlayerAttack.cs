@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] GameObject punchPrefab;
     [SerializeField] Transform punchSpawn;
+    [SerializeField] float attackTime = 1f;
 
     public bool isPunching = false;
 
@@ -53,13 +54,13 @@ public class PlayerAttack : MonoBehaviour
             punch.GetComponent<PunchController>().target = nearestEnemy.transform;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(attackTime / 2);
 
 
         punch.GetComponent<PunchController>().extending = false;
         punch.GetComponent<PunchController>().retracting = true;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(attackTime / 2);
 
 
         PlayerManager.instance.GainWater(punch.GetComponent<PunchController>().waterGathered);
