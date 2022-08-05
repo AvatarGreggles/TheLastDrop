@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool canMove = true;
     public Rigidbody2D theRB;
     public float moveSpeed;
     public float jumpForce;
@@ -16,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTime = 1f;
     float coyoteTimeCounter = 0f;
 
+    float originalGravityScale;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,32 +29,35 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (canMove)
         {
-            jumpBufferCounter = jumpBufferTime;
-        }
-        else
-        {
-            jumpBufferCounter -= Time.deltaTime;
-        }
+            if (Input.GetButtonDown("Jump"))
+            {
+                jumpBufferCounter = jumpBufferTime;
+            }
+            else
+            {
+                jumpBufferCounter -= Time.deltaTime;
+            }
 
-        HandleMovement();
+            HandleMovement();
 
-        // Checking if on the ground
-        isOnGround = Physics2D.OverlapCircle(groundCheckPoint.position, .3f, whatIsGround);
+            // Checking if on the ground
+            isOnGround = Physics2D.OverlapCircle(groundCheckPoint.position, .3f, whatIsGround);
 
-        if (isOnGround)
-        {
-            Debug.Log("OnGround");
-            coyoteTimeCounter = coyoteTime;
+            if (isOnGround)
+            {
+                Debug.Log("OnGround");
+                coyoteTimeCounter = coyoteTime;
+            }
+            else
+            {
+                Debug.Log("Not on ground");
+                coyoteTimeCounter -= Time.deltaTime;
+            }
+
+            HandleJumping();
         }
-        else
-        {
-            Debug.Log("Not on ground");
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-
-        HandleJumping();
     }
 
     void HandleMovement()
@@ -93,5 +100,25 @@ public class PlayerMovement : MonoBehaviour
             theRB.velocity = new Vector2(theRB.velocity.x, theRB.velocity.y * 0.5f);
             coyoteTimeCounter = 0f;
         }
+    }
+
+    public void DoHangTime()
+    {
+        canMove = false;
+        theRB.velocity = Vector2.zero;
+        originalGravityScale = theRB.gravityScale;
+        theRB.gravityScale = 0f;
+        theRB.bodyType = RigidbodyType2D.Kinematic;
+        theRB.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+    }
+
+    public void StopHangTime()
+    {
+        canMove = true;
+        theRB.gravityScale = originalGravityScale;
+        theRB.bodyType = RigidbodyType2D.Dynamic;
+        theRB.constraints = RigidbodyConstraints2D.None;
+        theRB.constraints = RigidbodyConstraints2D.FreezeRotation;
+
     }
 }

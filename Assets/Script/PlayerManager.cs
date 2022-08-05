@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] public Image playerWaterBodySprite;
     float maxWaterLevel = 1f;
-    float currentWaterLevel;
+    public float currentWaterLevel;
 
     private void Awake()
     {
@@ -30,20 +30,21 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            GainWater();
-        }
+        // For debuggin
+        // if (Input.GetKey(KeyCode.W))
+        // {
+        //     GainWater(0.01f);
+        // }
 
-        if (Input.GetKey(KeyCode.Q))
-        {
-            LoseWater();
-        }
+        // if (Input.GetKey(KeyCode.Q))
+        // {
+        //     LoseWater(0.01f);
+        // }
     }
 
-    void GainWater()
+    public void GainWater(float amount)
     {
-        currentWaterLevel += 0.01f;
+        currentWaterLevel += amount;
         if (currentWaterLevel > maxWaterLevel)
         {
             currentWaterLevel = maxWaterLevel;
@@ -52,7 +53,7 @@ public class PlayerManager : MonoBehaviour
         UpdatePlayerWaterBodySprite();
     }
 
-    void LoseWater()
+    public void LoseWater(float amount)
     {
         currentWaterLevel -= 0.01f;
         if (currentWaterLevel < 0)
