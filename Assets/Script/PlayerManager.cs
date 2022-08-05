@@ -24,7 +24,8 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        currentWaterLevel = maxWaterLevel;
+        currentWaterLevel = 0f;
+        UpdatePlayerWaterBodySprite();
     }
 
     void Update()
