@@ -5,24 +5,77 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] GameObject punchPrefab;
+    [SerializeField] GameObject sprayPrefab;
     [SerializeField] Transform punchSpawn;
+    [SerializeField] Transform spraySpawn;
     [SerializeField] float attackTime = 1f;
+    [SerializeField] float sprayTime = 1f;
 
     public bool isPunching = false;
+    public bool isSpraying = false;
+
+    private float sprayDelay = 0.05f;
+    float sprayCounter = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        sprayCounter = sprayDelay;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        sprayCounter -= Time.deltaTime;
+
         if (Input.GetKeyDown(KeyCode.P) && !isPunching)
         {
             StartCoroutine(HandlePunch());
         }
+
+        if (Input.GetKey(KeyCode.S) && PlayerManager.instance.currentWaterLevel > 0f && sprayCounter <= 0f)
+        {
+            sprayCounter = sprayDelay;
+            StartCoroutine(HandleSpray());
+        }
+    }
+
+    IEnumerator HandleSpray()
+    {
+        isSpraying = true;
+        PlayerManager.instance.LoseWater(0.01f);
+        // PlayerManager.instance.playerMovement.DoHangTime();
+
+        GameObject nearestEnemy = FindClosestEnemy(1, 10);
+
+        float angle = 0f;
+
+        if (nearestEnemy != null)
+        {
+            Vector2 directionToTarget = nearestEnemy.transform.position - transform.position;
+            angle = Vector3.Angle(Vector3.right, directionToTarget);
+            if (nearestEnemy.transform.position.y < transform.position.y) angle *= -1;
+        }
+        else
+        {
+            spraySpawn.rotation = Quaternion.identity;
+        }
+
+        Quaternion sprayRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        GameObject spray = Instantiate(sprayPrefab, spraySpawn.position, sprayRotation);
+
+        if (nearestEnemy != null)
+        {
+            spray.GetComponent<SprayController>().target = nearestEnemy.transform;
+        }
+
+        yield return new WaitForSeconds(sprayTime);
+
+        // PlayerManager.instance.playerMovement.StopHangTime();
+        isSpraying = false;
+        Destroy(spray);
     }
 
     IEnumerator HandlePunch()

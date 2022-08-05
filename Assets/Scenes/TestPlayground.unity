@@ -2478,6 +2478,36 @@ Canvas:
   m_SortingLayerID: 784364975
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &626531186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 626531187}
+  m_Layer: 0
+  m_Name: SprayPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &626531187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626531186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.22, y: 0.48, z: -0.48}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1272365287}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &751937119
 GameObject:
   m_ObjectHideFlags: 0
@@ -2945,9 +2975,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   punchPrefab: {fileID: 4257438544490746499, guid: eeb32fd80db434c8faca15f83b93e3d6, type: 3}
+  sprayPrefab: {fileID: 4257438544490746499, guid: f99a65e2d85824bf08bfd8e673de944e, type: 3}
   punchSpawn: {fileID: 1036570757}
+  spraySpawn: {fileID: 626531187}
   attackTime: 0.5
+  sprayTime: 2.5
   isPunching: 0
+  isSpraying: 0
 --- !u!4 &1272365287
 Transform:
   m_ObjectHideFlags: 0
@@ -2962,6 +2996,7 @@ Transform:
   - {fileID: 592196732}
   - {fileID: 278608188}
   - {fileID: 1036570757}
+  - {fileID: 626531187}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
