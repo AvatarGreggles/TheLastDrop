@@ -16,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
 
     private float sprayDelay = 0.05f;
     float sprayCounter = 0f;
+    public int sprayAmount = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator HandleSpray()
     {
         isSpraying = true;
-        PlayerManager.instance.LoseWater(0.001f);
+        PlayerManager.instance.LoseWater(0.0001f);
         // PlayerManager.instance.playerMovement.DoHangTime();
 
         GameObject nearestEnemy = FindClosestEnemy(1, 10);
@@ -64,11 +65,15 @@ public class PlayerAttack : MonoBehaviour
 
         Quaternion sprayRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        GameObject spray = Instantiate(sprayPrefab, spraySpawn.position, sprayRotation);
-
-        if (nearestEnemy != null)
+        for (int i = 0; i < sprayAmount; i++)
         {
-            spray.GetComponent<SprayController>().target = nearestEnemy.transform;
+            GameObject spray = Instantiate(sprayPrefab, spraySpawn.position, sprayRotation);
+
+            if (nearestEnemy != null)
+            {
+                spray.GetComponent<SprayController>().target = nearestEnemy.transform;
+            }
+
         }
 
         yield return new WaitForSeconds(sprayTime);

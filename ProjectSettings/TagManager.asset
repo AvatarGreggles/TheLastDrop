@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Targetable
   - Enemy
+  - Dead_Tree
   layers:
   - Default
   - TransparentFX
@@ -14,8 +15,8 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - Tree
+  - Player
   - 
   - 
   - 
