@@ -13,6 +13,8 @@ public class CrystalController : MonoBehaviour
 
     public bool isActive = false;
 
+    [SerializeField] GameObject spawner;
+
     [SerializeField] List<GameObject> vines = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
@@ -29,12 +31,14 @@ public class CrystalController : MonoBehaviour
         {
             if (!vine.activeSelf)
             {
-                DeativateCystal();
                 return;
             }
         }
 
-        ActivateCystal();
+        if (!isActive)
+        {
+            ActivateCystal();
+        }
     }
 
     public void SetCrystalSprite()
@@ -55,11 +59,25 @@ public class CrystalController : MonoBehaviour
     {
         isActive = true;
         SetCrystalSprite();
+
+        StartCoroutine(PurifyWorld());
     }
 
     public void DeativateCystal()
     {
         isActive = false;
         SetCrystalSprite();
+    }
+
+    IEnumerator PurifyWorld()
+    {
+        EnemyManager[] enemies = FindObjectsOfType<EnemyManager>();
+
+        foreach (EnemyManager enemy in enemies)
+        {
+            enemy.KillEnemy();
+        }
+        spawner.SetActive(false);
+        yield return null;
     }
 }

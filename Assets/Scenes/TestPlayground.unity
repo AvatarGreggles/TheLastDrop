@@ -277,6 +277,7 @@ MonoBehaviour:
   activeVines: {fileID: 350741660}
   inactiveVines: {fileID: 1676754011}
   spawner: {fileID: 0}
+  crystal: {fileID: 0}
 --- !u!1 &91632641
 GameObject:
   m_ObjectHideFlags: 0
@@ -5602,6 +5603,7 @@ MonoBehaviour:
   activeVines: {fileID: 0}
   inactiveVines: {fileID: 0}
   spawner: {fileID: 0}
+  crystal: {fileID: 0}
 --- !u!1001 &405615340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7471,6 +7473,7 @@ MonoBehaviour:
   inactiveSprite: {fileID: 21300000, guid: d5cd966007079470e94f95a29c75737b, type: 3}
   waterfall: {fileID: 1506605189}
   isActive: 0
+  spawner: {fileID: 1539159881}
   vines:
   - {fileID: 350741660}
   - {fileID: 693662501}
@@ -7531,6 +7534,7 @@ MonoBehaviour:
   activeVines: {fileID: 0}
   inactiveVines: {fileID: 0}
   spawner: {fileID: 0}
+  crystal: {fileID: 0}
 --- !u!1001 &936422994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10356,6 +10360,7 @@ MonoBehaviour:
   activeVines: {fileID: 0}
   inactiveVines: {fileID: 0}
   spawner: {fileID: 0}
+  crystal: {fileID: 0}
 --- !u!4 &1481092757 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1276952064327648514, guid: af0887dae328e43938afaf3c81ffe6dd, type: 3}
@@ -10474,7 +10479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1506605190
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10992,6 +10997,7 @@ MonoBehaviour:
   activeVines: {fileID: 0}
   inactiveVines: {fileID: 0}
   spawner: {fileID: 0}
+  crystal: {fileID: 0}
 --- !u!1 &1569651330
 GameObject:
   m_ObjectHideFlags: 0
@@ -13590,6 +13596,7 @@ MonoBehaviour:
   activeVines: {fileID: 136154483}
   inactiveVines: {fileID: 1054047324}
   spawner: {fileID: 0}
+  crystal: {fileID: 0}
 --- !u!1 &1914152247
 GameObject:
   m_ObjectHideFlags: 0
@@ -13690,6 +13697,7 @@ MonoBehaviour:
   activeVines: {fileID: 0}
   inactiveVines: {fileID: 0}
   spawner: {fileID: 0}
+  crystal: {fileID: 0}
 --- !u!1 &1926481738
 GameObject:
   m_ObjectHideFlags: 0
@@ -15008,6 +15016,7 @@ MonoBehaviour:
   activeVines: {fileID: 0}
   inactiveVines: {fileID: 0}
   spawner: {fileID: 0}
+  crystal: {fileID: 0}
 --- !u!1001 &2118085749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15154,6 +15163,7 @@ MonoBehaviour:
   activeVines: {fileID: 693662501}
   inactiveVines: {fileID: 2036651180}
   spawner: {fileID: 0}
+  crystal: {fileID: 0}
 --- !u!1001 &1276952065531456407
 PrefabInstance:
   m_ObjectHideFlags: 0

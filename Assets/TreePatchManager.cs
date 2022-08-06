@@ -12,6 +12,7 @@ public class TreePatchManager : MonoBehaviour
     [SerializeField] GameObject activeVines;
     [SerializeField] GameObject inactiveVines;
     [SerializeField] GameObject spawner;
+    [SerializeField] CrystalController crystal;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +51,11 @@ public class TreePatchManager : MonoBehaviour
                 if (inactiveVines != null)
                 {
                     inactiveVines.SetActive(true);
+                }
+
+                if (crystal != null)
+                {
+                    crystal.DeativateCystal();
                 }
 
                 return;
