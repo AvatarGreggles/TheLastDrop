@@ -47,7 +47,7 @@ public class CrystalController : MonoBehaviour
         if (isActive)
         {
             spriteRenderer.sprite = activeSprite;
-            waterfall.SetActive(true);
+            waterfall.SetActive(false);
         }
         else
         {
