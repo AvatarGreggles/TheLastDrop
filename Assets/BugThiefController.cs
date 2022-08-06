@@ -9,6 +9,8 @@ public class BugThiefController : MonoBehaviour
 
     GameObject nearestTree;
 
+    [SerializeField] float yOffset = 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +21,11 @@ public class BugThiefController : MonoBehaviour
     void Update()
     {
 
-        nearestTree = FindClosestTree(0, 10);
+        nearestTree = FindClosestTree(0, 100);
 
         if (nearestTree != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, nearestTree.transform.position, 0.001f);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(nearestTree.transform.position.x, nearestTree.transform.position.y + yOffset, nearestTree.transform.position.z), 0.001f);
         }
     }
 
@@ -42,13 +44,14 @@ public class BugThiefController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         targetTree.TakeWater();
         yield return new WaitForSeconds(0.5f);
-        isDraining = false;
 
         if (targetTree.currentSprite == 0)
         {
             // targetTree.gameObject.SetActive(false);
             nearestTree = FindClosestTree(0, 10);
         }
+
+        isDraining = false;
         // GetComponent<AudioSource>().Play();
     }
 

@@ -30,7 +30,7 @@ public class PlantController : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Z) && inRange && currentSprite == 1)
+        if (Input.GetKeyDown(KeyCode.Z) && inRange && currentSprite > 0)
         {
             SetPlantSprite();
             StartCoroutine(HandleTeleport());

@@ -44,11 +44,14 @@ public class IslandManager : MonoBehaviour
         if (reverseTravel && otherTilemapToActive != null)
         {
             otherTilemapToActive.enabled = true;
+            PlayerManager.instance.gameObject.GetComponentInChildren<Canvas>().sortingLayerName = otherTilemapToActive.GetComponentInChildren<TilemapRenderer>().sortingLayerName;
         }
         else
         {
             tilemapToActive.enabled = true;
+            PlayerManager.instance.gameObject.GetComponentInChildren<Canvas>().sortingLayerName = tilemapToActive.GetComponentInChildren<TilemapRenderer>().sortingLayerName;
         }
+
         reverseTravel = !reverseTravel;
     }
 }

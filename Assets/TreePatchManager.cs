@@ -11,6 +11,7 @@ public class TreePatchManager : MonoBehaviour
     [SerializeField] PlantController plantController;
     [SerializeField] GameObject activeVines;
     [SerializeField] GameObject inactiveVines;
+    [SerializeField] GameObject spawner;
 
     // Start is called before the first frame update
     void Start()
