@@ -9,6 +9,8 @@ public class CrystalController : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
+    [SerializeField] GameObject waterfall;
+
     public bool isActive = false;
 
     [SerializeField] List<GameObject> vines = new List<GameObject>();
@@ -27,6 +29,7 @@ public class CrystalController : MonoBehaviour
         {
             if (!vine.activeSelf)
             {
+                DeativateCystal();
                 return;
             }
         }
@@ -39,16 +42,24 @@ public class CrystalController : MonoBehaviour
         if (isActive)
         {
             spriteRenderer.sprite = activeSprite;
+            waterfall.SetActive(true);
         }
         else
         {
             spriteRenderer.sprite = inactiveSprite;
+            waterfall.SetActive(false);
         }
     }
 
     public void ActivateCystal()
     {
         isActive = true;
+        SetCrystalSprite();
+    }
+
+    public void DeativateCystal()
+    {
+        isActive = false;
         SetCrystalSprite();
     }
 }
