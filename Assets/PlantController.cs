@@ -49,6 +49,12 @@ public class PlantController : MonoBehaviour
         }
     }
 
+    public void ResetPlantSprite()
+    {
+        currentSprite = 0;
+        spriteRenderer.sprite = sprites[currentSprite];
+    }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -84,7 +90,7 @@ public class PlantController : MonoBehaviour
         GetComponentInParent<IslandManager>().GoToIsland();
 
         currentSprite = 1;
-        reverseTravel = !reverseTravel;
+        // reverseTravel = !reverseTravel;
 
         PlayerManager.instance.playerMovement.StopHangTime();
 

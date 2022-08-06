@@ -55,7 +55,7 @@ public class PlayerManager : MonoBehaviour
 
     public void LoseWater(float amount)
     {
-        currentWaterLevel -= 0.01f;
+        currentWaterLevel -= amount;
         if (currentWaterLevel < 0)
         {
             currentWaterLevel = 0;

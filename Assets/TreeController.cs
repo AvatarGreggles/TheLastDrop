@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TreeController : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite[] sprites;
-    [SerializeField] private int currentSprite = 0;
+    [SerializeField] public int currentSprite = 0;
+
+    [SerializeField] Slider revivalSlider;
+
 
     [SerializeField] private float reviveNeededPerLevel = 1f;
     float currentReviveLevel = 0f;
@@ -15,6 +19,9 @@ public class TreeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        revivalSlider.maxValue = sprites.Length - 1;
+        revivalSlider.value = currentSprite;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprites[currentSprite];
@@ -48,13 +55,33 @@ public class TreeController : MonoBehaviour
         {
             currentSprite++;
             spriteRenderer.sprite = sprites[currentSprite];
+            revivalSlider.value = currentSprite;
         }
         else
         {
             isAlive = true;
+            revivalSlider.value = currentSprite + 1;
         }
+
+        GetComponentInParent<TreePatchManager>().CheckIfPatchIsActive();
 
         // Clear bubbles
 
+    }
+
+    public void TakeWater()
+    {
+        currentSprite -= 1;
+
+        if (currentSprite < 0)
+        {
+            currentSprite = 0;
+        }
+        spriteRenderer.sprite = sprites[currentSprite];
+        revivalSlider.value = currentSprite;
+
+        isAlive = false;
+
+        GetComponentInParent<TreePatchManager>().CheckIfPatchIsActive();
     }
 }

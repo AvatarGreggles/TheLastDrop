@@ -9,6 +9,8 @@ public class TreePatchManager : MonoBehaviour
     public TreeController[] trees;
 
     [SerializeField] PlantController plantController;
+    [SerializeField] GameObject activeVines;
+    [SerializeField] GameObject inactiveVines;
 
     // Start is called before the first frame update
     void Start()
@@ -19,24 +21,57 @@ public class TreePatchManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+
+    }
+
+    public void CheckIfPatchIsActive()
+    {
         // check that all trees are alive
-        if (!wetTilemap.activeSelf)
+
+        foreach (TreeController tree in trees)
         {
-            foreach (TreeController tree in trees)
+            if (!tree.isAlive)
             {
-                if (!tree.isAlive)
+                wetTilemap.SetActive(false);
+                if (plantController != null)
                 {
-                    return;
+                    Debug.Log("PlantController is not null");
+                    plantController.ResetPlantSprite();
                 }
-            }
 
-            wetTilemap.SetActive(true);
+                if (activeVines != null)
+                {
+                    activeVines.SetActive(false);
+                }
 
-            if (plantController != null)
-            {
-                plantController.SetPlantSprite();
+                if (inactiveVines != null)
+                {
+                    inactiveVines.SetActive(true);
+                }
+
+                return;
             }
         }
 
+
+        wetTilemap.SetActive(true);
+
+        if (plantController != null)
+        {
+            Debug.Log("PlantController is not null");
+            plantController.SetPlantSprite();
+        }
+
+        if (activeVines != null)
+        {
+            activeVines.SetActive(true);
+        }
+
+        if (inactiveVines != null)
+        {
+            inactiveVines.SetActive(false);
+        }
     }
 }

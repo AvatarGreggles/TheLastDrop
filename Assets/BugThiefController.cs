@@ -1,0 +1,77 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BugThiefController : MonoBehaviour
+{
+
+    bool isDraining = false;
+
+    GameObject nearestTree;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        nearestTree = FindClosestTree(0, 10);
+
+        if (nearestTree != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, nearestTree.transform.position, 0.001f);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        TreeController tree = other.GetComponent<TreeController>();
+        if (other.gameObject.tag == "Dead_Tree" && !isDraining)
+        {
+            StartCoroutine(DrainWater(tree));
+        }
+    }
+
+    IEnumerator DrainWater(TreeController targetTree)
+    {
+        isDraining = true;
+        yield return new WaitForSeconds(0.5f);
+        targetTree.TakeWater();
+        yield return new WaitForSeconds(0.5f);
+        isDraining = false;
+
+        if (targetTree.currentSprite == 0)
+        {
+            // targetTree.gameObject.SetActive(false);
+            nearestTree = FindClosestTree(0, 10);
+        }
+        // GetComponent<AudioSource>().Play();
+    }
+
+    public GameObject FindClosestTree(float min, float max)
+    {
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("Dead_Tree");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+
+        // calculate squared distances
+        min = min * min;
+        max = max * max;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance && curDistance >= min && curDistance <= max && go.GetComponent<TreeController>().currentSprite != 0)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+        return closest;
+    }
+}
