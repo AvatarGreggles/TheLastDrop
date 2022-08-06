@@ -44,9 +44,10 @@ public class IslandManager : MonoBehaviour
                 {
                     return;
                 }
-                wetTilemap.SetActive(true);
-                plantController.SetPlantSprite();
             }
+
+            wetTilemap.SetActive(true);
+            plantController.SetPlantSprite();
         }
     }
 
