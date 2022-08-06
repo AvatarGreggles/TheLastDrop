@@ -16,16 +16,22 @@ public class IslandManager : MonoBehaviour
 
     [SerializeField] bool isStartTilemap = false;
 
+    [SerializeField] PolygonCollider2D polygonCollider;
+
     // Start is called before the first frame update
     void Start()
     {
-        if (isStartTilemap)
+        TilemapCollider2D tilemap = GetComponent<TilemapCollider2D>();
+        if (tilemap != null)
         {
-            GetComponent<TilemapCollider2D>().enabled = true;
-        }
-        else
-        {
-            GetComponent<TilemapCollider2D>().enabled = false;
+            if (isStartTilemap)
+            {
+                tilemap.enabled = true;
+            }
+            else
+            {
+                tilemap.enabled = false;
+            }
         }
     }
 
@@ -39,17 +45,33 @@ public class IslandManager : MonoBehaviour
     {
         Debug.Log("Should disable tilemap");
 
-        GetComponent<TilemapCollider2D>().enabled = false;
 
-        if (reverseTravel && otherTilemapToActive != null)
+
+        if (polygonCollider != null)
         {
+            foreach (TilemapCollider2D island in islands)
+            {
+                island.enabled = false;
+                island.gameObject.SetActive(false);
+            }
+
+            polygonCollider.enabled = true;
+            PlayerManager.instance.gameObject.GetComponentInChildren<Canvas>().sortingLayerName = polygonCollider.GetComponentInChildren<SpriteRenderer>().sortingLayerName;
+            PlayerManager.instance.gameObject.GetComponentInChildren<Canvas>().sortingOrder = polygonCollider.GetComponentInChildren<SpriteRenderer>().sortingOrder;
+        }
+        else if (reverseTravel && otherTilemapToActive != null)
+        {
+            GetComponent<TilemapCollider2D>().enabled = false;
             otherTilemapToActive.enabled = true;
             PlayerManager.instance.gameObject.GetComponentInChildren<Canvas>().sortingLayerName = otherTilemapToActive.GetComponentInChildren<TilemapRenderer>().sortingLayerName;
+            PlayerManager.instance.gameObject.GetComponentInChildren<Canvas>().sortingOrder = otherTilemapToActive.GetComponentInChildren<TilemapRenderer>().sortingOrder;
         }
         else
         {
+            GetComponent<TilemapCollider2D>().enabled = false;
             tilemapToActive.enabled = true;
             PlayerManager.instance.gameObject.GetComponentInChildren<Canvas>().sortingLayerName = tilemapToActive.GetComponentInChildren<TilemapRenderer>().sortingLayerName;
+            PlayerManager.instance.gameObject.GetComponentInChildren<Canvas>().sortingOrder = tilemapToActive.GetComponentInChildren<TilemapRenderer>().sortingOrder;
         }
 
         reverseTravel = !reverseTravel;

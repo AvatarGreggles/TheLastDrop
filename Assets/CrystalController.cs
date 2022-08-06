@@ -14,6 +14,7 @@ public class CrystalController : MonoBehaviour
     public bool isActive = false;
 
     [SerializeField] GameObject spawner;
+    [SerializeField] PlantController plantController;
 
     [SerializeField] List<GameObject> vines = new List<GameObject>();
     // Start is called before the first frame update
@@ -51,7 +52,7 @@ public class CrystalController : MonoBehaviour
         else
         {
             spriteRenderer.sprite = inactiveSprite;
-            waterfall.SetActive(false);
+            // waterfall.SetActive(false);
         }
     }
 
@@ -78,6 +79,7 @@ public class CrystalController : MonoBehaviour
             enemy.KillEnemy();
         }
         spawner.SetActive(false);
+        plantController.SetPlantSprite();
         yield return null;
     }
 }
