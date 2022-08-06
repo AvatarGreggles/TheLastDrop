@@ -44,7 +44,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator HandleSpray()
     {
         isSpraying = true;
-        PlayerManager.instance.LoseWater(0.01f);
+        PlayerManager.instance.LoseWater(0.001f);
         // PlayerManager.instance.playerMovement.DoHangTime();
 
         GameObject nearestEnemy = FindClosestEnemy(1, 10);
@@ -75,7 +75,6 @@ public class PlayerAttack : MonoBehaviour
 
         // PlayerManager.instance.playerMovement.StopHangTime();
         isSpraying = false;
-        Destroy(spray);
     }
 
     IEnumerator HandlePunch()

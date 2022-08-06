@@ -16,28 +16,29 @@ public class SprayController : MonoBehaviour
 
     Vector3 directionToPunch;
 
+
     private void Start()
     {
-        player = PlayerManager.instance.playerMovement;
-
-        directionToPunch = transform.right;
-
-        if (target == null)
-        {
-            if (player.transform.localScale.x == 1)
-            {
-                directionToPunch = transform.right;
-            }
-            else
-            {
-                directionToPunch = -transform.right;
-            }
-        }
+        StartCoroutine(Move());
     }
 
-    void Update()
+    private IEnumerator Move()
     {
-        transform.Translate(directionToPunch * speed * Time.deltaTime, Space.World);
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            gameObject.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z + Random.Range(0, 1));
+            float moveTimer = 1;
+            while (moveTimer > 0)
+            {
+                gameObject.transform.Translate(Vector3.forward * Time.deltaTime * speed);
+                print("IsMoving");
+                moveTimer -= Time.deltaTime;
+                yield return null;
+            }
+            Destroy(gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
