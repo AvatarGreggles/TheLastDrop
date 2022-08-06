@@ -44,7 +44,7 @@ public class TreeController : MonoBehaviour
         // GetComponent<AudioSource>().Play();
         // Change sprite
 
-        if (currentSprite + 1 < sprites.Length)
+        if (currentSprite + 1 < sprites.Length - 1)
         {
             currentSprite++;
             spriteRenderer.sprite = sprites[currentSprite];

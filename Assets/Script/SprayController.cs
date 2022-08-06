@@ -47,7 +47,6 @@ public class SprayController : MonoBehaviour
             while (timer > 0)
             {
                 gameObject.transform.Translate(new Vector3(directionToSpray.x, yDir, zDir) * Time.deltaTime * speed);
-                print("IsMoving");
                 timer -= Time.deltaTime;
                 yield return null;
             }
@@ -60,7 +59,6 @@ public class SprayController : MonoBehaviour
             while (timer > 0)
             {
                 gameObject.transform.Translate(new Vector3(directionToSpray.x, yDir, 0) * Time.deltaTime * speed);
-                print("IsMoving");
                 timer -= Time.deltaTime;
                 yield return null;
             }

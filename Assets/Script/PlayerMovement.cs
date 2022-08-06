@@ -47,12 +47,10 @@ public class PlayerMovement : MonoBehaviour
 
             if (isOnGround)
             {
-                Debug.Log("OnGround");
                 coyoteTimeCounter = coyoteTime;
             }
             else
             {
-                Debug.Log("Not on ground");
                 coyoteTimeCounter -= Time.deltaTime;
             }
 
