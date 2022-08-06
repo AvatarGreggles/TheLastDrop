@@ -81,7 +81,7 @@ public class PlantController : MonoBehaviour
             yield return null;
         }
 
-        // GetComponentInParent<IslandManager>().GoToIsland();
+        GetComponentInParent<IslandManager>().GoToIsland();
 
         currentSprite = 1;
         reverseTravel = !reverseTravel;

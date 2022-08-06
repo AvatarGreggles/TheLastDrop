@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5916302354000186092}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.0352691, y: -1.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 680880759
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 188741103594491918, guid: 2b6e995208a25410285cb869e63d1d2d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -135,5 +135,5 @@ MonoBehaviour:
   - {fileID: -776372726061846638, guid: 2b6e995208a25410285cb869e63d1d2d, type: 3}
   - {fileID: 4757981517447766916, guid: 2b6e995208a25410285cb869e63d1d2d, type: 3}
   currentSprite: 0
-  reviveNeededPerLevel: 1
+  reviveNeededPerLevel: 0.5
   isAlive: 0
