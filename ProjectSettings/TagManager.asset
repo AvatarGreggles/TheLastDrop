@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Targetable
   - Enemy
+  - Dead_Tree
   layers:
   - Default
   - TransparentFX
@@ -14,8 +15,8 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - Tree
+  - Player
   - 
   - 
   - 
@@ -42,6 +43,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Furtherground
+    uniqueID: 1230823525
     locked: 0
   - name: Farground
     uniqueID: 3298519837
