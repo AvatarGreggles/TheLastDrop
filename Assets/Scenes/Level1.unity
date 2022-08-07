@@ -7363,7 +7363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.89, z: -10}
+  m_LocalPosition: {x: -10, y: 0.89, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8840,7 +8840,7 @@ MonoBehaviour:
   activeSprite: {fileID: 21300000, guid: 618bc23126b574f458f5c71f6047e5cb, type: 3}
   inactiveSprite: {fileID: 21300000, guid: d5cd966007079470e94f95a29c75737b, type: 3}
   waterfall: {fileID: 1541236376}
-  isActive: 1
+  isActive: 0
   spawner: {fileID: 1539159881}
   plantController: {fileID: 2026439111}
   vines:
@@ -10832,7 +10832,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272365285}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.14, y: -0.88, z: 0}
+  m_LocalPosition: {x: -8.14, y: -1.012, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10915,9 +10915,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1272365290}
-  wingameScreen: {fileID: 0}
+  wingameScreen: {fileID: 1243193332}
   playerWaterBodySprite: {fileID: 1209960867}
   currentWaterLevel: 0
+  startDialog:
+    lines:
+    - BZZZ...Initiating Purification Protocol.
+  startDialog2:
+    lines:
+    - SEEK WATER. RESTORE LIFE.
+  startDialog3:
+    lines:
+    - Q TO PUNCH AND DRAIN WATER FROM FOES.
+  startDialog4:
+    lines:
+    - W TO SPRAY WATER AND GIVE LIFE.
 --- !u!1 &1315262003
 GameObject:
   m_ObjectHideFlags: 0

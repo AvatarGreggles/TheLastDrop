@@ -30,12 +30,12 @@ public class PlayerAttack : MonoBehaviour
     {
         sprayCounter -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.P) && !isPunching)
+        if (Input.GetKeyDown(KeyCode.Q) && !isPunching)
         {
             StartCoroutine(HandlePunch());
         }
 
-        if (Input.GetKey(KeyCode.S) && PlayerManager.instance.currentWaterLevel > 0f && sprayCounter <= 0f)
+        if (Input.GetKey(KeyCode.W) && PlayerManager.instance.currentWaterLevel > 0f && sprayCounter <= 0f)
         {
             sprayCounter = sprayDelay;
             StartCoroutine(HandleSpray());

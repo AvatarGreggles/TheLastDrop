@@ -14,6 +14,12 @@ public class PlayerManager : MonoBehaviour
     float maxWaterLevel = 1f;
     public float currentWaterLevel;
 
+    [SerializeField] Dialog startDialog;
+    [SerializeField] Dialog startDialog2;
+
+    [SerializeField] Dialog startDialog3;
+
+    [SerializeField] Dialog startDialog4;
     private void Awake()
     {
         instance = this;
@@ -29,6 +35,8 @@ public class PlayerManager : MonoBehaviour
         wingameScreen.SetActive(false);
         currentWaterLevel = 0f;
         UpdatePlayerWaterBodySprite();
+
+        StartCoroutine(StartGame());
     }
 
     void Update()
@@ -43,6 +51,25 @@ public class PlayerManager : MonoBehaviour
         // {
         //     LoseWater(0.01f);
         // }
+    }
+
+    IEnumerator StartGame()
+    {
+        PlayerManager.instance.playerMovement.DoHangTime();
+        DialogManager.Instance.dialogBox.transform.position = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z);
+        DialogManager.Instance.lettersPerSecond = 30;
+        yield return DialogManager.Instance.ShowDialog(startDialog);
+        yield return new WaitForSeconds(3f);
+        yield return DialogManager.Instance.ShowDialog(startDialog2);
+        yield return new WaitForSeconds(3f);
+        yield return DialogManager.Instance.ShowDialog(startDialog3);
+        yield return new WaitForSeconds(3f);
+        yield return DialogManager.Instance.ShowDialog(startDialog4);
+        yield return new WaitForSeconds(3f);
+        yield return DialogManager.Instance.ShowDialog(startDialog);
+        yield return new WaitForSeconds(3f);
+        DialogManager.Instance.CloseDialog();
+        PlayerManager.instance.playerMovement.StopHangTime();
     }
 
     public void GainWater(float amount)
