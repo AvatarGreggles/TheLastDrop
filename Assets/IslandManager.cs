@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class IslandManager : MonoBehaviour
 {
 
-    [SerializeField] TilemapCollider2D tilemapToActive;
+    public TilemapCollider2D tilemapToActive;
     [SerializeField] TilemapCollider2D otherTilemapToActive;
 
 

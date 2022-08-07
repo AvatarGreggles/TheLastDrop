@@ -48,7 +48,7 @@ public class HumanController : MonoBehaviour
         DialogManager.Instance.dialogBox.transform.position = new Vector3(transform.position.x, transform.position.y + 2.5f, transform.position.z);
         yield return DialogManager.Instance.ShowDialog(subliminalMessage);
 
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1f);
         DialogManager.Instance.CloseDialog();
     }
 

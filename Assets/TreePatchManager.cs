@@ -19,6 +19,17 @@ public class TreePatchManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (CrystalController.instance.isActive)
+        {
+            StartCoroutine(EnableWorld());
+        }
+
+    }
+
+    IEnumerator EnableWorld()
+    {
+        yield return new WaitForSeconds(0.2f);
+        HandleActiveLogic();
 
     }
 
@@ -60,21 +71,26 @@ public class TreePatchManager : MonoBehaviour
                     crystal.DeativateCystal();
                 }
 
-                if (deadState != null)
-                {
-                    deadState.gameObject.SetActive(true);
-                }
+                // if (deadState != null)
+                // {
+                //     deadState.gameObject.SetActive(true);
+                // }
 
-                if (aliveState != null)
-                {
-                    aliveState.gameObject.SetActive(false);
-                }
+                // if (aliveState != null)
+                // {
+                //     aliveState.gameObject.SetActive(false);
+                // }
 
                 return;
             }
         }
 
+        HandleActiveLogic();
 
+    }
+
+    public void HandleActiveLogic()
+    {
         wetTilemap.SetActive(true);
 
         if (plantController != null)
@@ -101,6 +117,11 @@ public class TreePatchManager : MonoBehaviour
         if (aliveState != null)
         {
             aliveState.gameObject.SetActive(true);
+        }
+
+        foreach (TreeController tree in trees)
+        {
+            tree.InstantLife();
         }
     }
 

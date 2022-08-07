@@ -25,12 +25,34 @@ public class TreeController : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprites[currentSprite];
+
+        if (CrystalController.instance.isActive)
+        {
+            StartCoroutine(LoadTrees());
+        }
+    }
+
+    IEnumerator LoadTrees()
+    {
+        yield return new WaitForSeconds(0.2f);
+        InstantLife();
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void InstantLife()
+    {
+        currentSprite = sprites.Length - 1;
+        revivalSlider.value = revivalSlider.maxValue;
+        spriteRenderer.sprite = sprites[currentSprite];
+
+        revivalSlider.gameObject.SetActive(false);
+        isAlive = true;
     }
 
     public void CheckForRevive(float reviveAmount)
@@ -53,6 +75,7 @@ public class TreeController : MonoBehaviour
 
         if (currentSprite + 1 < sprites.Length - 1)
         {
+            revivalSlider.gameObject.SetActive(true);
             currentSprite++;
             spriteRenderer.sprite = sprites[currentSprite];
             revivalSlider.value = currentSprite;
@@ -61,6 +84,7 @@ public class TreeController : MonoBehaviour
         {
             isAlive = true;
             revivalSlider.value = currentSprite + 1;
+            revivalSlider.gameObject.SetActive(false);
         }
 
         GetComponentInParent<TreePatchManager>().CheckIfPatchIsActive();
@@ -77,6 +101,7 @@ public class TreeController : MonoBehaviour
         {
             currentSprite = 0;
         }
+        revivalSlider.gameObject.SetActive(true);
         spriteRenderer.sprite = sprites[currentSprite];
         revivalSlider.value = currentSprite;
 

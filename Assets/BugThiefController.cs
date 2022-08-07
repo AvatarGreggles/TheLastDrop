@@ -5,11 +5,15 @@ using UnityEngine;
 public class BugThiefController : MonoBehaviour
 {
 
+    [SerializeField] float speed = 0.001f;
+
     bool isDraining = false;
 
     GameObject nearestTree;
 
     [SerializeField] float yOffset = 0.5f;
+
+    TreeController tree;
 
     // Start is called before the first frame update
     void Start()
@@ -25,13 +29,13 @@ public class BugThiefController : MonoBehaviour
 
         if (nearestTree != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(nearestTree.transform.position.x, nearestTree.transform.position.y + yOffset, nearestTree.transform.position.z), 0.001f);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(nearestTree.transform.position.x, nearestTree.transform.position.y + yOffset, nearestTree.transform.position.z), speed);
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        TreeController tree = other.GetComponent<TreeController>();
+        tree = other.GetComponent<TreeController>();
         if (other.gameObject.tag == "Dead_Tree" && !isDraining)
         {
             StartCoroutine(DrainWater(tree));
