@@ -13,6 +13,8 @@ public class TreePatchManager : MonoBehaviour
     [SerializeField] GameObject inactiveVines;
     [SerializeField] GameObject spawner;
     [SerializeField] CrystalController crystal;
+    [SerializeField] GameObject deadState;
+    [SerializeField] GameObject aliveState;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +60,16 @@ public class TreePatchManager : MonoBehaviour
                     crystal.DeativateCystal();
                 }
 
+                if (deadState != null)
+                {
+                    deadState.gameObject.SetActive(true);
+                }
+
+                if (aliveState != null)
+                {
+                    aliveState.gameObject.SetActive(false);
+                }
+
                 return;
             }
         }
@@ -80,5 +92,27 @@ public class TreePatchManager : MonoBehaviour
         {
             inactiveVines.SetActive(false);
         }
+
+        if (deadState != null)
+        {
+            deadState.gameObject.SetActive(false);
+        }
+
+        if (aliveState != null)
+        {
+            aliveState.gameObject.SetActive(true);
+        }
+    }
+
+    public void ReviveHuman()
+    {
+        deadState.SetActive(false);
+        aliveState.SetActive(true);
+    }
+
+    public void KillHuman()
+    {
+        deadState.SetActive(true);
+        aliveState.SetActive(false);
     }
 }
