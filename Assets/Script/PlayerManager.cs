@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Tilemaps;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -20,6 +21,14 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] Dialog startDialog3;
 
     [SerializeField] Dialog startDialog4;
+
+    [SerializeField] bool skipIntro = false;
+
+    public TilemapCollider2D initialTilemap;
+
+    [SerializeField] List<TilemapCollider2D> tilemaps;
+
+
     private void Awake()
     {
         instance = this;
@@ -36,7 +45,8 @@ public class PlayerManager : MonoBehaviour
         currentWaterLevel = 0f;
         UpdatePlayerWaterBodySprite();
 
-        StartCoroutine(StartGame());
+        if (!skipIntro)
+            StartCoroutine(StartGame());
     }
 
     void Update()
@@ -110,5 +120,24 @@ public class PlayerManager : MonoBehaviour
         //yield return new WaitForSeconds(1f);
         wingameScreen.SetActive(true);
         yield return new WaitForSeconds(1f);
+    }
+
+    public IEnumerator Die(Vector3 checkpoint)
+    {
+        PlayerManager.instance.playerMovement.theRB.velocity = Vector2.zero;
+        PlayerManager.instance.playerMovement.DoHangTime();
+        transform.GetChild(0).gameObject.SetActive(false);
+
+        foreach (TilemapCollider2D tilemap in tilemaps)
+        {
+            tilemap.enabled = false;
+        }
+
+        tilemaps[0].enabled = true;
+        yield return new WaitForSeconds(1f);
+        PlayerManager.instance.playerMovement.transform.position = checkpoint;
+        PlayerManager.instance.playerMovement.StopHangTime();
+        transform.GetChild(0).gameObject.SetActive(true);
+
     }
 }

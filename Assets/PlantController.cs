@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum Layers
+{
+    Island1, Island2, Island3
+}
+
 public class PlantController : MonoBehaviour
 {
 
@@ -16,10 +22,15 @@ public class PlantController : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] Transform otherTarget;
 
+    [SerializeField] Layers islandLayerToActivate;
+
+
+
     public bool inRange = false;
     // Start is called before the first frame update
     void Start()
     {
+        EnableIslandOne();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprites[currentSprite];
@@ -76,6 +87,23 @@ public class PlantController : MonoBehaviour
 
     IEnumerator HandleTeleport()
     {
+        // Compare islandLayerToActivate enum to string
+        string layerName = System.Enum.GetName(typeof(Layers), islandLayerToActivate);
+
+        if (layerName == "Island1")
+        {
+            EnableIslandOne();
+        }
+        else if (layerName == "Island2")
+        {
+            EnableIslandTwo();
+        }
+        else if (layerName == "Island3")
+        {
+            EnableIslandThree();
+        }
+
+
         PlayerManager.instance.playerMovement.DoHangTime();
 
         Transform trueTarget = reverseTravel && otherTarget != null ? otherTarget : target;
@@ -95,5 +123,26 @@ public class PlantController : MonoBehaviour
 
         PlayerManager.instance.playerMovement.StopHangTime();
 
+    }
+
+    public void EnableIslandOne()
+    {
+        Physics.IgnoreLayerCollision(8, 9, false);
+        Physics.IgnoreLayerCollision(8, 10, true);
+        Physics.IgnoreLayerCollision(8, 11, true);
+    }
+
+    public void EnableIslandTwo()
+    {
+        Physics.IgnoreLayerCollision(8, 10, false);
+        Physics.IgnoreLayerCollision(8, 11, true);
+        Physics.IgnoreLayerCollision(8, 9, true);
+    }
+
+    public void EnableIslandThree()
+    {
+        Physics.IgnoreLayerCollision(8, 11, false);
+        Physics.IgnoreLayerCollision(8, 10, true);
+        Physics.IgnoreLayerCollision(8, 9, true);
     }
 }

@@ -35,6 +35,14 @@ public class IslandManager : MonoBehaviour
         }
     }
 
+    public void ResetTilemaps()
+    {
+        foreach (TilemapCollider2D tilemap in islands)
+        {
+            tilemap.enabled = false;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
