@@ -8,6 +8,8 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance;
     public PlayerMovement playerMovement;
 
+    [SerializeField] GameObject wingameScreen;
+
     [SerializeField] public Image playerWaterBodySprite;
     float maxWaterLevel = 1f;
     public float currentWaterLevel;
@@ -24,6 +26,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
+        wingameScreen.SetActive(false);
         currentWaterLevel = 0f;
         UpdatePlayerWaterBodySprite();
     }
@@ -67,5 +70,18 @@ public class PlayerManager : MonoBehaviour
     void UpdatePlayerWaterBodySprite()
     {
         playerWaterBodySprite.fillAmount = currentWaterLevel;
+    }
+
+    public void WinGame()
+    {
+        Debug.Log("You win the game");
+        StartCoroutine(WinGameCoroutine());
+    }
+
+    IEnumerator WinGameCoroutine()
+    {
+        //yield return new WaitForSeconds(1f);
+        wingameScreen.SetActive(true);
+        yield return new WaitForSeconds(1f);
     }
 }

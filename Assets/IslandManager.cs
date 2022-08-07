@@ -53,11 +53,15 @@ public class IslandManager : MonoBehaviour
             {
                 island.enabled = false;
                 island.gameObject.SetActive(false);
+
             }
 
             polygonCollider.enabled = true;
             PlayerManager.instance.gameObject.GetComponentInChildren<Canvas>().sortingLayerName = polygonCollider.GetComponentInChildren<SpriteRenderer>().sortingLayerName;
             PlayerManager.instance.gameObject.GetComponentInChildren<Canvas>().sortingOrder = polygonCollider.GetComponentInChildren<SpriteRenderer>().sortingOrder;
+
+            PlayerManager.instance.WinGame();
+
         }
         else if (reverseTravel && otherTilemapToActive != null)
         {
