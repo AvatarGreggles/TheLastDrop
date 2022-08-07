@@ -22,7 +22,7 @@ public class PunchController : MonoBehaviour
         player = PlayerManager.instance.playerMovement;
 
         line = GetComponent<LineRenderer>();
-        line.SetPosition(0, new Vector3(player.transform.position.x, player.transform.position.y + 0.4f, player.transform.position.z));
+        line.SetPosition(0, transform.position);
         line.SetPosition(1, transform.position);
     }
 

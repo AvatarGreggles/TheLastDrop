@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     float originalGravityScale;
 
+    [SerializeField] Animator fullBodyAnimator;
+    [SerializeField] Animator emptyBodyAnimator;
+
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +74,17 @@ public class PlayerMovement : MonoBehaviour
         else if (theRB.velocity.x > 0)
         {
             transform.localScale = Vector3.one;
+        }
+
+        if (Input.GetAxisRaw("Horizontal") != 0)
+        {
+            fullBodyAnimator.SetBool("isMoving", true);
+            emptyBodyAnimator.SetBool("isMoving", true);
+        }
+        else
+        {
+            fullBodyAnimator.SetBool("isMoving", false);
+            emptyBodyAnimator.SetBool("isMoving", false);
         }
     }
 

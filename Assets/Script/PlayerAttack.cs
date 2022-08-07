@@ -87,7 +87,7 @@ public class PlayerAttack : MonoBehaviour
         isPunching = true;
         PlayerManager.instance.playerMovement.DoHangTime();
         //Get direction vector pointing at target
-        GameObject nearestEnemy = FindClosestEnemy(1, 10);
+        GameObject nearestEnemy = FindClosestEnemy(1, 5);
 
         float angle = 0f;
 
@@ -95,7 +95,11 @@ public class PlayerAttack : MonoBehaviour
         {
             Vector2 directionToTarget = nearestEnemy.transform.position - transform.position;
             angle = Vector3.Angle(Vector3.right, directionToTarget);
-            if (nearestEnemy.transform.position.y < transform.position.y) angle *= -1;
+            angle -= 15f;
+            if (nearestEnemy.transform.position.y < transform.position.y)
+            {
+                angle *= -1;
+            }
         }
         else
         {
@@ -111,13 +115,13 @@ public class PlayerAttack : MonoBehaviour
             punch.GetComponent<PunchController>().target = nearestEnemy.transform;
         }
 
-        yield return new WaitForSeconds(attackTime / 2);
+        yield return new WaitForSeconds(attackTime);
 
 
         punch.GetComponent<PunchController>().extending = false;
         punch.GetComponent<PunchController>().retracting = true;
 
-        yield return new WaitForSeconds(attackTime / 2);
+        yield return new WaitForSeconds(attackTime);
 
 
         PlayerManager.instance.GainWater(punch.GetComponent<PunchController>().waterGathered);
