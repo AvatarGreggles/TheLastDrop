@@ -20,18 +20,16 @@ public class CrystalController : MonoBehaviour
 
     [SerializeField] List<GameObject> vines = new List<GameObject>();
 
-    [SerializeField] GameObject deadState;
-    [SerializeField] GameObject aliveState;
-
     [SerializeField] GameObject poisonState;
     [SerializeField] GameObject freshState;
 
     [SerializeField] GameObject poisonDeadZone;
     [SerializeField] GameObject freshDeadZone;
 
-    [SerializeField] TreePatchManager[] treePatches;
-
     [SerializeField] TreeController[] trees;
+
+    [SerializeField] GameObject[] objectsToActive;
+    [SerializeField] GameObject[] objectsToInactive;
 
     private void Awake()
     {
@@ -52,15 +50,6 @@ public class CrystalController : MonoBehaviour
     IEnumerator EnableWorld()
     {
         yield return new WaitForSeconds(0.2f);
-        if (deadState != null)
-        {
-            deadState.gameObject.SetActive(false);
-        }
-
-        if (aliveState != null)
-        {
-            aliveState.gameObject.SetActive(true);
-        }
 
         if (waterfall != null)
         {
@@ -96,6 +85,17 @@ public class CrystalController : MonoBehaviour
         {
             freshDeadZone.gameObject.SetActive(true);
         }
+
+        foreach (GameObject objectToActive in objectsToActive)
+        {
+            objectToActive.SetActive(true);
+        }
+
+        foreach (GameObject objectToInactive in objectsToInactive)
+        {
+            objectToInactive.SetActive(false);
+        }
+
 
     }
 
@@ -154,35 +154,7 @@ public class CrystalController : MonoBehaviour
             enemy.KillEnemy();
         }
 
-        if (deadState != null)
-        {
-            deadState.gameObject.SetActive(false);
-        }
-
-        if (aliveState != null)
-        {
-            aliveState.gameObject.SetActive(true);
-        }
-
-        if (poisonState != null)
-        {
-            poisonState.gameObject.SetActive(false);
-        }
-
-        if (freshState != null)
-        {
-            freshState.gameObject.SetActive(true);
-        }
-
-        if (poisonDeadZone != null)
-        {
-            poisonDeadZone.gameObject.SetActive(false);
-        }
-
-        if (freshDeadZone != null)
-        {
-            freshDeadZone.gameObject.SetActive(true);
-        }
+        StartCoroutine(EnableWorld());
 
         spawner.SetActive(false);
         plantController.SetPlantSprite();

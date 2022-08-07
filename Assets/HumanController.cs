@@ -27,7 +27,7 @@ public class HumanController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && !DialogManager.Instance.IsShowing)
         {
-            DialogManager.Instance.dialogBox.transform.position = new Vector3(transform.position.x, transform.position.y + 2.5f, transform.position.z);
+            DialogManager.Instance.dialogBox.transform.position = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z);
             DialogManager.Instance.lettersPerSecond = 30;
             StartCoroutine(DialogManager.Instance.ShowDialog(dialog));
         }
