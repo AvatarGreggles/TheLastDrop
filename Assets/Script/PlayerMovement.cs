@@ -92,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (coyoteTimeCounter > 0 && jumpBufferCounter > 0)
         {
+
             jumpBufferCounter = 0f;
 
             if (isOnGround)
@@ -103,6 +104,8 @@ public class PlayerMovement : MonoBehaviour
                 canDoubleJump = false;
             }
 
+            StartCoroutine(HandleJumpAnimation());
+
             // Jumping
             theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
         }
@@ -112,6 +115,13 @@ public class PlayerMovement : MonoBehaviour
             theRB.velocity = new Vector2(theRB.velocity.x, theRB.velocity.y * 0.5f);
             coyoteTimeCounter = 0f;
         }
+    }
+
+    IEnumerator HandleJumpAnimation()
+    {
+        emptyBodyAnimator.SetBool("isJumping", true);
+        yield return new WaitForSeconds(0.1f);
+        emptyBodyAnimator.SetBool("isJumping", false);
     }
 
     public void DoHangTime()
