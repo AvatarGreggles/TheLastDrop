@@ -16,6 +16,8 @@ public class TreePatchManager : MonoBehaviour
     [SerializeField] GameObject deadState;
     [SerializeField] GameObject aliveState;
 
+    bool isActive = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,14 @@ public class TreePatchManager : MonoBehaviour
         {
             if (!tree.isAlive)
             {
+
+                if (isActive)
+                {
+                    ProgressController.instance.DecreaseProgress();
+                }
+
+                isActive = false;
+
                 wetTilemap.SetActive(false);
                 if (plantController != null)
                 {
@@ -71,6 +81,8 @@ public class TreePatchManager : MonoBehaviour
                     crystal.DeativateCystal();
                 }
 
+
+
                 // if (deadState != null)
                 // {
                 //     deadState.gameObject.SetActive(true);
@@ -91,37 +103,44 @@ public class TreePatchManager : MonoBehaviour
 
     public void HandleActiveLogic()
     {
-        wetTilemap.SetActive(true);
 
-        if (plantController != null)
+        if (!isActive)
         {
-            Debug.Log("PlantController is not null");
-            plantController.SetPlantSprite();
-        }
+            wetTilemap.SetActive(true);
+            ProgressController.instance.IncreaseProgress();
 
-        if (activeVines != null)
-        {
-            activeVines.SetActive(true);
-        }
+            if (plantController != null)
+            {
+                Debug.Log("PlantController is not null");
+                plantController.SetPlantSprite();
+            }
 
-        if (inactiveVines != null)
-        {
-            inactiveVines.SetActive(false);
-        }
+            if (activeVines != null)
+            {
+                activeVines.SetActive(true);
+            }
 
-        if (deadState != null)
-        {
-            deadState.gameObject.SetActive(false);
-        }
+            if (inactiveVines != null)
+            {
+                inactiveVines.SetActive(false);
+            }
 
-        if (aliveState != null)
-        {
-            aliveState.gameObject.SetActive(true);
-        }
+            if (deadState != null)
+            {
+                deadState.gameObject.SetActive(false);
+            }
 
-        foreach (TreeController tree in trees)
-        {
-            tree.InstantLife();
+            if (aliveState != null)
+            {
+                aliveState.gameObject.SetActive(true);
+            }
+
+            foreach (TreeController tree in trees)
+            {
+                tree.InstantLife();
+            }
+
+            isActive = true;
         }
     }
 

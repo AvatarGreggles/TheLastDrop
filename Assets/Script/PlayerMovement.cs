@@ -120,8 +120,10 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator HandleJumpAnimation()
     {
         emptyBodyAnimator.SetBool("isJumping", true);
+        fullBodyAnimator.SetBool("isJumping", true);
         yield return new WaitForSeconds(0.1f);
         emptyBodyAnimator.SetBool("isJumping", false);
+        fullBodyAnimator.SetBool("isJumping", false);
     }
 
     public void DoHangTime()

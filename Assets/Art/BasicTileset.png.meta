@@ -147,6 +147,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1084,6 +1085,48 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      BasicTileset_21: 2229417885612175892
+      BasicTileset_40: -2092149925452036693
+      BasicTileset_3: -9065467645503672192
+      BasicTileset_20: -5848575017571486254
+      BasicTileset_6: 6978875124832507097
+      BasicTileset_16: 23875697362995940
+      BasicTileset_35: -1822567460319306790
+      BasicTileset_2: -8323845427849855041
+      BasicTileset_37: 1467452850242978490
+      BasicTileset_34: 3489715768690560801
+      BasicTileset_13: -8341302605611107422
+      BasicTileset_25: -6795113704865483162
+      BasicTileset_39: -4070540645697459814
+      BasicTileset_0: 2615641119894093462
+      BasicTileset_9: 7202850899654105159
+      BasicTileset_22: 4086126505498646568
+      BasicTileset_26: 6658698409273936749
+      BasicTileset_12: -3129468808923566886
+      BasicTileset_14: 7519159646517142871
+      BasicTileset_31: 4469048752541072078
+      BasicTileset_33: -903549805308450235
+      BasicTileset_7: 6433070500384270935
+      BasicTileset_38: 2083382725905254491
+      BasicTileset_30: -7537269990145022088
+      BasicTileset_36: -590219724749169812
+      BasicTileset_28: -6535090928719649303
+      BasicTileset_27: -3659079922616807121
+      BasicTileset_8: -367861566354200537
+      BasicTileset_19: 5237191239439757438
+      BasicTileset_1: 1982209138906739537
+      BasicTileset_5: 144846432261550474
+      BasicTileset_24: 7062211833609287578
+      BasicTileset_4: 7758665668045687999
+      BasicTileset_10: -1573510333061231021
+      BasicTileset_18: 1623888518214289729
+      BasicTileset_11: -36400965021622296
+      BasicTileset_23: 2824266178077121221
+      BasicTileset_29: 2556906425071634599
+      BasicTileset_15: -1523858891201140594
+      BasicTileset_17: 2538867742060976451
+      BasicTileset_32: 554527847721106781
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

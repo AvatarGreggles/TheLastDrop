@@ -99,6 +99,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -700,6 +701,32 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      newer_trees_4: 1168057937151777957
+      newer_trees_22: 8425112683180406137
+      newer_trees_24: 4757981517447766916
+      newer_trees_13: -6529133093891272413
+      newer_trees_17: 1996887270024698731
+      newer_trees_10: -5837730355328557579
+      newer_trees_1: 7606271499789384035
+      newer_trees_5: -5005249042317046465
+      newer_trees_19: -8649248720471638926
+      newer_trees_3: 188741103594491918
+      newer_trees_20: 4043776353016674256
+      newer_trees_8: 4786832041003530328
+      newer_trees_16: -776372726061846638
+      newer_trees_12: -3914205326101917223
+      newer_trees_9: 4357007329604224181
+      newer_trees_6: 4372307505466241644
+      newer_trees_0: -4460459867052947180
+      newer_trees_23: 2536491186314006151
+      newer_trees_21: -4864772993743040529
+      newer_trees_15: -6703021588343177543
+      newer_trees_18: -1008000511919645871
+      newer_trees_14: 8892793215050387958
+      newer_trees_11: -4894721065136570556
+      newer_trees_2: 3792765196156882176
+      newer_trees_7: -7359303270319430284
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

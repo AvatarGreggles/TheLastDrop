@@ -90,6 +90,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -640,6 +641,29 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      statues_11: 7364784145028843437
+      statues_14: -1460150727160758244
+      statues_7: 6858283526592129603
+      statues_17: -2451816102941633463
+      statues_13: 7717127735590197823
+      statues_6: -2793715144295766251
+      statues_20: -3637608833889626609
+      statues_0: -850448590910956077
+      statues_12: -8610522131216755728
+      statues_19: 2645546372785296946
+      statues_5: 8192561855593692354
+      statues_8: -224842585190131506
+      statues_21: 6903324315747621332
+      statues_1: 5854221785500267996
+      statues_18: -6465507251390259043
+      statues_10: 6378892009669810210
+      statues_16: -1018253806891238014
+      statues_3: 4897290056721986670
+      statues_15: 2946616600661210511
+      statues_2: 292219121494668422
+      statues_9: 1764767456250586106
+      statues_4: 9126695259608078401
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
