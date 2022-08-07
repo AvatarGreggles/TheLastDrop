@@ -59,15 +59,15 @@ public class PlayerManager : MonoBehaviour
         DialogManager.Instance.dialogBox.transform.position = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z);
         DialogManager.Instance.lettersPerSecond = 30;
         yield return DialogManager.Instance.ShowDialog(startDialog);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         yield return DialogManager.Instance.ShowDialog(startDialog2);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         yield return DialogManager.Instance.ShowDialog(startDialog3);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         yield return DialogManager.Instance.ShowDialog(startDialog4);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         yield return DialogManager.Instance.ShowDialog(startDialog);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         DialogManager.Instance.CloseDialog();
         PlayerManager.instance.playerMovement.StopHangTime();
     }
