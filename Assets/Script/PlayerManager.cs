@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -120,7 +121,10 @@ public class PlayerManager : MonoBehaviour
         Timer.instance.shouldCountdown = false;
         //yield return new WaitForSeconds(1f);
         wingameScreen.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(5f);
+
+        // Load next level
+        SceneManager.LoadScene("Level1");
     }
 
     public IEnumerator Die(Vector3 checkpoint)
