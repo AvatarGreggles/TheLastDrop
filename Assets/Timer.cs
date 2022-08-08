@@ -20,6 +20,8 @@ public class Timer : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip gainSound;
 
+    public bool shouldCountdown = true;
+
     private void Awake()
     {
         instance = this;
@@ -35,14 +37,17 @@ public class Timer : MonoBehaviour
     }
     IEnumerator Countdown()
     {
-        while (timeLeft > 0.0f)
+        while (timeLeft > 0.0f && shouldCountdown)
         {
             yield return new WaitForSeconds(1.0f);
             timeLeft -= 1.0f;
             SetTimerText(timeLeft);
 
         }
-        Lose();
+        if (timeLeft <= 0.0f)
+        {
+            Lose();
+        }
         Debug.Log("Time up");
     }
 
@@ -71,6 +76,7 @@ public class Timer : MonoBehaviour
 
     public void Lose()
     {
+        shouldCountdown = false;
         StartCoroutine(LoseCoroutine());
     }
 

@@ -117,6 +117,7 @@ public class PlayerManager : MonoBehaviour
 
     IEnumerator WinGameCoroutine()
     {
+        Timer.instance.shouldCountdown = false;
         //yield return new WaitForSeconds(1f);
         wingameScreen.SetActive(true);
         yield return new WaitForSeconds(1f);
