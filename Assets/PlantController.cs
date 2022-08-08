@@ -25,6 +25,8 @@ public class PlantController : MonoBehaviour
 
     [SerializeField] bool winPlant = false;
 
+    [SerializeField] Dialog dialog;
+
 
 
 
@@ -73,6 +75,14 @@ public class PlantController : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             inRange = true;
+
+            if (other.gameObject.tag == "Player" && !DialogManager.Instance.IsShowing && currentSprite > 0)
+            {
+                DialogManager.Instance.dialogBox.transform.position = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z);
+                DialogManager.Instance.lettersPerSecond = 75;
+                StartCoroutine(DialogManager.Instance.ShowDialog(dialog));
+            }
+
         }
 
     }
@@ -82,6 +92,7 @@ public class PlantController : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             inRange = false;
+            DialogManager.Instance.CloseDialog();
         }
 
     }
