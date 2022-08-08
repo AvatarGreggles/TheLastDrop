@@ -18,9 +18,12 @@ public class PlayerAttack : MonoBehaviour
     float sprayCounter = 0f;
     public int sprayAmount = 3;
 
+    PlayerMovement playerMovement;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerMovement = GetComponent<PlayerMovement>();
         sprayCounter = sprayDelay;
 
     }
@@ -30,12 +33,13 @@ public class PlayerAttack : MonoBehaviour
     {
         sprayCounter -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Q) && !isPunching)
+        if (Input.GetKeyDown(KeyCode.Q) && !isPunching && playerMovement.canMove)
+
         {
             StartCoroutine(HandlePunch());
         }
 
-        if (Input.GetKey(KeyCode.W) && PlayerManager.instance.currentWaterLevel > 0f && sprayCounter <= 0f)
+        if (Input.GetKey(KeyCode.W) && PlayerManager.instance.currentWaterLevel > 0f && sprayCounter <= 0f && playerMovement.canMove)
         {
             sprayCounter = sprayDelay;
             StartCoroutine(HandleSpray());
@@ -93,18 +97,14 @@ public class PlayerAttack : MonoBehaviour
 
         if (nearestEnemy != null)
         {
-            Vector2 directionToTarget = nearestEnemy.transform.position - transform.position;
+            Vector2 directionToTarget = nearestEnemy.transform.position - punchSpawn.position;
             angle = Vector3.Angle(Vector3.right, directionToTarget);
-            angle -= 15f;
-            if (nearestEnemy.transform.position.y < transform.position.y)
-            {
-                angle *= -1;
-            }
+            // if (nearestEnemy.transform.position.y < transform.position.y)
+            // {
+            //     angle *= -1;
+            // }
         }
-        else
-        {
-            punchSpawn.rotation = Quaternion.identity;
-        }
+
 
         Quaternion punchRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
@@ -125,6 +125,7 @@ public class PlayerAttack : MonoBehaviour
 
 
         PlayerManager.instance.GainWater(punch.GetComponent<PunchController>().waterGathered);
+
         Destroy(punch);
 
         PlayerManager.instance.playerMovement.StopHangTime();

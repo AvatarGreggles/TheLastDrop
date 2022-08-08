@@ -96,6 +96,8 @@ public class CrystalController : MonoBehaviour
             objectToInactive.SetActive(false);
         }
 
+        ProgressController.instance.CompleteProgress();
+
 
     }
 
@@ -154,7 +156,8 @@ public class CrystalController : MonoBehaviour
             enemy.KillEnemy();
         }
 
-        StartCoroutine(EnableWorld());
+        yield return EnableWorld();
+
 
         spawner.SetActive(false);
         plantController.SetPlantSprite();

@@ -59,6 +59,7 @@ public class PunchController : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             waterGathered += other.gameObject.GetComponent<EnemyManager>().waterProvided;
+            Timer.instance.AddTime(other.gameObject.GetComponent<EnemyManager>().secondsProvided);
             Destroy(other.gameObject);
         }
     }

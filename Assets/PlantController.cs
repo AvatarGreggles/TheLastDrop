@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 
-public enum Layers
-{
-    Island1, Island2, Island3
-}
 
 public class PlantController : MonoBehaviour
 {
@@ -22,7 +19,12 @@ public class PlantController : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] Transform otherTarget;
 
-    [SerializeField] Layers islandLayerToActivate;
+    [SerializeField] TilemapCollider2D tilemapToActive;
+
+    [SerializeField] TilemapCollider2D tilemapToDeactive;
+
+    [SerializeField] bool winPlant = false;
+
 
 
 
@@ -30,7 +32,6 @@ public class PlantController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EnableIslandOne();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprites[currentSprite];
@@ -87,62 +88,39 @@ public class PlantController : MonoBehaviour
 
     IEnumerator HandleTeleport()
     {
-        // Compare islandLayerToActivate enum to string
-        string layerName = System.Enum.GetName(typeof(Layers), islandLayerToActivate);
-
-        if (layerName == "Island1")
-        {
-            EnableIslandOne();
-        }
-        else if (layerName == "Island2")
-        {
-            EnableIslandTwo();
-        }
-        else if (layerName == "Island3")
-        {
-            EnableIslandThree();
-        }
 
 
         PlayerManager.instance.playerMovement.DoHangTime();
 
-        Transform trueTarget = reverseTravel && otherTarget != null ? otherTarget : target;
-
         // Move towards target over time
-        while (Vector3.Distance(PlayerManager.instance.playerMovement.transform.position, trueTarget.position) > 0.1f)
+        while (Vector3.Distance(PlayerManager.instance.playerMovement.transform.position, target.position) > 0.1f)
         {
-            PlayerManager.instance.playerMovement.transform.position = Vector3.MoveTowards(PlayerManager.instance.playerMovement.transform.position, trueTarget.position, Time.deltaTime * 15f);
+            PlayerManager.instance.playerMovement.transform.position = Vector3.MoveTowards(PlayerManager.instance.playerMovement.transform.position, target.position, Time.deltaTime * 15f);
             yield return null;
         }
 
 
-        GetComponentInParent<IslandManager>().GoToIsland();
+        if (tilemapToActive != null)
+        {
+            tilemapToDeactive.enabled = false;
+            tilemapToActive.enabled = true;
+
+            PlayerManager.instance.gameObject.GetComponentInChildren<Canvas>().sortingLayerName = tilemapToActive.GetComponentInChildren<TilemapRenderer>().sortingLayerName;
+            PlayerManager.instance.gameObject.GetComponentInChildren<Canvas>().sortingOrder = tilemapToActive.GetComponentInChildren<TilemapRenderer>().sortingOrder;
+        }
 
         currentSprite = 1;
         // reverseTravel = !reverseTravel;
+
+        if (winPlant)
+        {
+            PlayerManager.instance.WinGame();
+        }
 
         PlayerManager.instance.playerMovement.StopHangTime();
 
     }
 
-    public void EnableIslandOne()
-    {
-        Physics.IgnoreLayerCollision(8, 9, false);
-        Physics.IgnoreLayerCollision(8, 10, true);
-        Physics.IgnoreLayerCollision(8, 11, true);
-    }
 
-    public void EnableIslandTwo()
-    {
-        Physics.IgnoreLayerCollision(8, 10, false);
-        Physics.IgnoreLayerCollision(8, 11, true);
-        Physics.IgnoreLayerCollision(8, 9, true);
-    }
 
-    public void EnableIslandThree()
-    {
-        Physics.IgnoreLayerCollision(8, 11, false);
-        Physics.IgnoreLayerCollision(8, 10, true);
-        Physics.IgnoreLayerCollision(8, 9, true);
-    }
 }

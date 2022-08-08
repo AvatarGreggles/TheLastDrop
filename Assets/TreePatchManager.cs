@@ -31,7 +31,7 @@ public class TreePatchManager : MonoBehaviour
     IEnumerator EnableWorld()
     {
         yield return new WaitForSeconds(0.2f);
-        HandleActiveLogic();
+        HandleActiveLogic(false);
 
     }
 
@@ -101,11 +101,16 @@ public class TreePatchManager : MonoBehaviour
 
     }
 
-    public void HandleActiveLogic()
+    public void HandleActiveLogic(bool shouldAddTime = true)
     {
 
         if (!isActive)
         {
+            if (shouldAddTime)
+            {
+                Timer.instance.AddTime(10f);
+            }
+
             wetTilemap.SetActive(true);
             ProgressController.instance.IncreaseProgress();
 

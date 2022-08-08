@@ -49,5 +49,11 @@ public class ProgressController : MonoBehaviour
         SetProgress(currentIndex);
     }
 
+    public void CompleteProgress()
+    {
+        currentIndex = sprites.Length - 1;
+        SetProgress(currentIndex);
+    }
+
 
 }
